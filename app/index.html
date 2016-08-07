@@ -22,8 +22,8 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header" ng-controller='navbar'>
-        <div class="navbar navbar-default" role="navigation">
+    <div class="header" >
+        <div class="navbar navbar-default" role="navigation" ng-controller='navbar'>
             <div class="container">
                 <div class="navbar-header">
 
@@ -53,6 +53,7 @@
 		              </li> -->
 
                     </ul>
+                    {{data}}
                     <span class="nav navbar-nav navbar-right">
 		              	<label for="" class="pull-left p_All-2x">Import LinkedIn data</label>
                         <ng-csv-import
@@ -63,6 +64,8 @@
                         	result="null"
                         	accept="csv.accept"
                         	callback="csv.callback"></ng-csv-import>
+
+
                     </span>
                 </div>
             </div>
@@ -75,7 +78,7 @@
 
     <div class="footer">
         <div class="container">
-            <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+
         </div>
     </div>
 
@@ -113,6 +116,8 @@
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/about.js"></script>
     <script src="scripts/services/importcsv.js"></script>
+    <script src="scripts/services/filereader.js"></script>
+    <script src="scripts/directives/csvimport.js"></script>
     <!-- endbuild -->
 </body>
 

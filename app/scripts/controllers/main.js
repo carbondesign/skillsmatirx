@@ -9,5 +9,12 @@
  */
 angular.module('skillsMatrixApp')
     .controller('MainCtrl', function($scope, ImportCSV) {
- 		$scope.data = ImportCSV.setData();
+    	console.log(ImportCSV.data);
+    	$scope.data = ImportCSV.data;
+    	// $scope.$watch('data', function(newval){
+    	// 	console.log(newval)
+    	// })
+
+
     });
+//

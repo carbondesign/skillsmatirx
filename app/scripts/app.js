@@ -15,8 +15,7 @@ angular
         'ngResource',
         'ngRoute',
         'ngSanitize',
-        'ngTouch',
-        'ngCsvImport'
+        'ngTouch'
     ])
     .config(function($routeProvider) {
         $routeProvider
@@ -34,48 +33,7 @@ angular
                 redirectTo: '/'
             });
     })
-    .controller('navbar', ['$scope', '$http', 'ImportCSV',
-        function($scope, $http, ImportCSV) {
+    .controller('navbar', function(){
+    	// console.log('here')
+    })
 
-            $scope.linkedinMsg = {};
-            $scope.showLinkedinLogin = true;
-            $scope.showEmailForm = true;
-
-            $scope.csv = {
-                content: null,
-                header: true,
-                headerVisible: true,
-                separator:',',
-                separatorVisible: false,
-                result: null,
-                encoding: 'ISO-8859-1',
-                encodingVisible: true,
-                callback:results
-            };
-
-            function results (data){
-            	ImportCSV.getData(data)
-            	$scope.data = data;
-            	$scope.$apply();
-            	console.log(data)
-    		};
-    		$scope.results = results;
-            var _lastGoodResult = '';
-            $scope.toPrettyJSON = function(json, tabWidth) {
-                var objStr = JSON.stringify(json);
-                var obj = null;
-                try {
-                    obj = $parse(objStr)({});
-                } catch (e) {
-                    // eat $parse error
-                    return _lastGoodResult;
-                }
-
-                var result = JSON.stringify(obj, null, Number(tabWidth));
-                _lastGoodResult = result;
-
-                return result;
-            };
-
-        }
-    ]);
