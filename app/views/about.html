@@ -1,1 +1,36 @@
-<p>This is the about view.</p>
+<div class="row">
+    <div class="col-md-6">
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="btn-group" opt-kind ok-key="filter">
+                    <button type='button' class='btn btn-default active' ok-sel="*">Show All</button>
+                    <button type='button' class='btn btn-default' ok-sel=".purple">Purple</button>
+                    <button type='button' class='btn btn-default' ok-sel=".orange">Orange</button>
+                    <button type='button' class='btn btn-default' ok-sel=".blue">Blue</button>
+                    <button type='button' class='btn btn-default' ok-sel=".green">Green</button>
+                    <button type='button' class='btn btn-default' ok-sel=":not(.blue)">Not Blue</button>
+                    <button type='button' class='btn btn-default' ok-sel="#extra">Extra Only</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <ul class='list-unstyled' id="isotopeContainer" isotope-container iso-options-subscribe="my-iso-opts" iso-method-subscribe="my-iso-method">
+                <!-- <li ng-repeat="company in data.json" isotope-item class="color-shape {{company.class}}">
+                 <div class="symbol">{{company.Company_Name}}</div>
+
+              </li> -->
+                <li ng-repeat="x in xList" isotope-item="isotope-item" onclick="removeItem(this)" class="color-shape {{x.class}}">
+                    <div class="symbol">{{x.name}}</div>
+                    <div class="weight" date="{{x.date}}">{{x.date|date}}</div>
+                    <div class="number" number="{{x.number}}">{{x.number}}</div>
+                </li>
+            </ul>
+
+        </div>
+
+
+    </div>
+</div>

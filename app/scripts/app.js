@@ -15,7 +15,9 @@ angular
         'ngResource',
         'ngRoute',
         'ngSanitize',
-        'ngTouch'
+        'ngTouch',
+        'iso',
+        'firebase'
     ])
     .config(function($routeProvider) {
         $routeProvider
@@ -33,7 +35,22 @@ angular
                 redirectTo: '/'
             });
     })
-    .controller('navbar', function(){
-    	// console.log('here')
-    })
+    .controller('navbar', function($firebaseObject, $firebaseAuth) {
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBCXL3qvcK_DbpeDGfebgpKy2iDWRjkWKQ",
+            authDomain: "skillsmatrix-4f8b9.firebaseapp.com",
+            databaseURL: "https://skillsmatrix-4f8b9.firebaseio.com",
+            storageBucket: "",
+        };
+        firebase.initializeApp(config);
 
+        var auth = $firebaseAuth();
+
+        auth.$signInWithEmailAndPassword("leigh765@me.com", "paint123").then(function(firebaseUser) {
+            console.log("Signed in as:", firebaseUser.uid);
+        }).catch(function(error) {
+            console.error("Authentication failed:", error);
+        });
+
+    })

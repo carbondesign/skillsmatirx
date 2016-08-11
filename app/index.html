@@ -14,6 +14,7 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+
 </head>
 
 <body ng-app="skillsMatrixApp">
@@ -40,22 +41,31 @@
                 <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#/">Home</a></li>
-                        <li><a ng-href="#/about">About</a></li>
+                        <li class="active"><a href="#/">Heat Map</a></li>
+                        <li><a ng-href="#/about">Isotope</a></li>
                         <li><a ng-href="#/">Contact</a></li>
-                        <!-- <li class='p_All'><span
-                    linkedin-login
-                    linkedin-button-text="Linkedin Login"
-                    linkedin-success-msg="LinkedIn authorized!"
-                    linkedin-profile-data="linkedinProfileDataCallback"
-		                    >
-		                  </span>
-		              </li> -->
 
                     </ul>
-                    {{data}}
+                    <style>
+                    	.firebaseui-idp-list{
+                    		margin: 0px !important;
+                    		margin-top: 5px !important;
+                    	}
+                    	.firebaseui-card-content{
+                    		padding: 0px !important;
+                    	}
+                    	.firebaseui-idp-list>.firebaseui-list-item{
+                    		margin-bottom: 0px !important;
+                    	}
+                    	#sign-in-status{
+                    		padding: 15px;
+                    	}
+                    </style>
+                    <div class="pull-right" id="sign-in-status"></div>
+                    <div class="pull-right"id="firebaseui-auth-container"></div>
                     <span class="nav navbar-nav navbar-right">
-		              	<label for="" class="pull-left p_All-2x">Import LinkedIn data</label>
+
+		              	<!-- <label for="" class="pull-left p_All-2x">Import LinkedIn data</label> -->
                         <ng-csv-import
                         	class="pull-right p_All"
                         	content="csv.content"
@@ -63,9 +73,9 @@
                         	separator="csv.separator"
                         	result="null"
                         	accept="csv.accept"
-                        	callback="csv.callback"></ng-csv-import>
+                        	callback="csv.callback">
 
-
+                       	</ng-csv-import>
                     </span>
                 </div>
             </div>
@@ -73,7 +83,7 @@
     </div>
 
     <div class="container">
-        <div ng-view="" >{{data}}</div>
+        <div ng-view="" ></div>
     </div>
 
     <div class="footer">
@@ -108,17 +118,49 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-csv-import/dist/angular-csv-import.js"></script>
+    <script src="bower_components/get-style-property/get-style-property.js"></script>
+    <script src="bower_components/get-size/get-size.js"></script>
+    <script src="bower_components/matches-selector/matches-selector.js"></script>
+    <script src="bower_components/eventie/eventie.js"></script>
+    <script src="bower_components/doc-ready/doc-ready.js"></script>
+    <script src="bower_components/eventEmitter/EventEmitter.js"></script>
+    <script src="bower_components/fizzy-ui-utils/utils.js"></script>
+    <script src="bower_components/outlayer/item.js"></script>
+    <script src="bower_components/outlayer/outlayer.js"></script>
+    <script src="bower_components/masonry/masonry.js"></script>
+    <script src="bower_components/jquery-bridget/jquery-bridget.js"></script>
+    <script src="bower_components/isotope/js/item.js"></script>
+    <script src="bower_components/isotope/js/layout-mode.js"></script>
+    <script src="bower_components/isotope/js/isotope.js"></script>
+    <script src="bower_components/isotope/js/layout-modes/vertical.js"></script>
+    <script src="bower_components/isotope/js/layout-modes/fit-rows.js"></script>
+    <script src="bower_components/isotope/js/layout-modes/masonry.js"></script>
+    <script src="bower_components/angular-isotope/dist/angular-isotope.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/app.js"></script>
+	<!-- <script src="scripts/lib/jquery.isotope.js"></script>
+	 --> <!-- build:js({.tmp,app}) scripts/scripts.js -->
+	<!-- <script src="https://d3js.org/d3-scale.v1.min.js"></script>
+	 -->
+	<script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/about.js"></script>
     <script src="scripts/services/importcsv.js"></script>
     <script src="scripts/services/filereader.js"></script>
+    <script src="scripts/services/positions.js"></script>
     <script src="scripts/directives/csvimport.js"></script>
     <!-- endbuild -->
+
+        <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+
+    	<!-- AngularFire -->
+    	<script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.min.js"></script>
+
+
+        <script src="https://www.gstatic.com/firebasejs/ui/live/0.4/firebase-ui-auth.js"></script>
+    	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.4/firebase-ui-auth.css" />
+
 </body>
 
 </html>
