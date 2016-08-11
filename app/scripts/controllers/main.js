@@ -8,13 +8,13 @@
  * Controller of the skillsMatrixApp
  */
 angular.module('skillsMatrixApp')
-    .controller('MainCtrl', function($scope, $firebaseObject, PositionsServ, ImportCSV) {
+    .controller('MainCtrl', function($scope, $firebaseObject, $firebaseArray, PositionsServ, ImportCSV) {
         var ref = firebase.database().ref().child("data");
         $scope.positArray = $firebaseArray(ref);
 
         // var syncObject = $firebaseObject(ref);
         // syncObject.$bindTo($scope, "data");
-        $scope.positions = ImportCSV.data;
+        var positionImport = ImportCSV.data;
         // if (ImportCSV.getPositions) {
         //     ImportCSV.getPositions.map(function(posit) {
         //     	console.log(posit)

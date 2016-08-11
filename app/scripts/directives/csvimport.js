@@ -22,7 +22,7 @@ angular.module('skillsMatrixApp')
 			// scope.separatorVisible = scope.separatorVisible || false;
 			// scope.headerVisible = scope.headerVisible || false;
 			element.on('change', function(onChangeEvent) {
-				console.log(onChangeEvent.target.files)
+				// console.log(onChangeEvent.target.files)
 			    var files = onChangeEvent.target.files;
 			    ImportCSV.loadFile(files, 'ISO-8859-1', scope)
 			})

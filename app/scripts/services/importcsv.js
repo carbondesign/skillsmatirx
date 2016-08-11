@@ -1,30 +1,47 @@
 'use strict';
 angular.module('skillsMatrixApp')
-    .factory('ImportCSV', function($q, FileReader) {
+    .factory('ImportCSV', function($q, FileReader, $firebaseArray) {
     	var data = {
-    		json:[],
     		loading: false
     	};
-    	var contentParsed = {};
-        var loadFile = function(files, encode, scope) {
-	        var content;
-	        return FileReader.readAsText(files, encode, scope).then(function (resp) {
-    	        // Do stuff
-    	        resp = csvToJSON(resp);
 
-    	        data.json = resp;
-    	        console.log(data);
-    	        return data;
+    	var contentParsed = {};
+        var loadFile = function(files, encode, scope, $firebaseArray) {
+	        	var fileJSON;
+	        	var files = files;
+	        	// console.log(files[0].name)
+    	        for (var i = 0; i < files.length; i++) {
+    	        	fileJSON = readFile(files[i], encode)
+    	        	switch (files[i].name) {
+    	        		case 'Positions.csv':
+    	        			data.positions = fileJSON;
+    	        			break;
+    	        	// 	case 'Skills.csv':
+    	        	// 		data.skills = resp;
+    	        	// 		break;
+    	        	// 	case 'Certifications.csv':
+    	        	// 		data.certs = resp;
+    	        	// 		break;
+    	        	}
+    	        }
+
+
+        }
+
+        var readFile = function(file){
+        	FileReader.readAsText(file, encode).then(function (resp) {
+    			resp = csvToJSON(resp);
+	        	console.log(file.name);
+
+	        	console.log(data);
+        		return data;
 
     	    }, function (err) {
     	    	console.log(err);
     	        // Do stuff
     	    });
         }
-        var getPositions = function(data){
-        	console.log(data)
-        	return data
-        }
+
         var csvToJSON = function(content) {
 
             var lines = content.split(new RegExp('\n(?![^"]*"(?:(?:[^"]*"){2})*[^"]*$)'));
@@ -36,7 +53,7 @@ angular.module('skillsMatrixApp')
             headers.map(function(head){
             	newheads.push(head.split(" ").join("_"));
             });
-            console.log(newheads);
+            // console.log(newheads);
             for (var i = start; i < lines.length; i++) {
                 var obj = {};
                 var currentline = lines[i].split(new RegExp(',' + '(?![^"]*"(?:(?:[^"]*"){2})*[^"]*$)'));
